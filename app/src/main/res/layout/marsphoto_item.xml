@@ -48,21 +48,25 @@
             android:layout_marginStart="8dp">
 
             <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/camera_name"
                 android:layout_width="wrap_content"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
                 android:layout_height="wrap_content"
                 tools:text="Camera: MAST"/>
             <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mission_status"
                 android:layout_width="wrap_content"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
                 android:layout_height="wrap_content"
-                tools:text="Mission: Taking water photos"/>
+                tools:text="Mission Status: Active"/>
             <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/launch_date_text"
                 android:layout_width="wrap_content"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
                 android:layout_height="wrap_content"
                 tools:text="Launch Date: 20.10.2005"/>
             <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/landing_date_text"
                 android:layout_width="wrap_content"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
                 android:layout_height="wrap_content"
