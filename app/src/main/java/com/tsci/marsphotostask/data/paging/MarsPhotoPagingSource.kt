@@ -1,5 +1,6 @@
 package com.tsci.marsphotostask.data.paging
 
+import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.tsci.marsphotostask.common.Constants
@@ -8,17 +9,19 @@ import com.tsci.marsphotostask.data.remote.MarsPhotoApi
 import com.tsci.marsphotostask.data.remote.dto.toMarsPhoto
 import com.tsci.marsphotostask.domain.model.MarsPhoto
 import java.lang.Exception
+import javax.inject.Inject
 
-class MarsPhotoPagingSource(
+private const val TAG = "MarsPhotoPagingSource.kt"
+class MarsPhotoPagingSource @Inject constructor(
     private val marsPhotoApi: MarsPhotoApi,
     private val rover: Constants.Rovers
 ) : PagingSource<Int, MarsPhoto>() {
     override fun getRefreshKey(state: PagingState<Int, MarsPhoto>): Int? {
-        TODO("Not yet implemented")
+        return null
     }
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, MarsPhoto> {
-
+        Log.d(TAG, "load: ${params.key}")
         return try {
             val currentPage = params.key ?: 1
             val responseData = when (rover) {
@@ -33,6 +36,7 @@ class MarsPhotoPagingSource(
                     marsPhotoApi.getSpiritMarsPhotos(page = currentPage).map { it.toMarsPhoto() }
                 }
             }
+            Log.d(TAG, "load: $responseData")
 
             LoadResult.Page(
                 data = responseData,
