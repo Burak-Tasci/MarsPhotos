@@ -2,7 +2,7 @@ package com.tsci.marsphotostask.data.remote.dto
 
 import com.tsci.marsphotostask.domain.model.MarsPhoto
 
-internal data class MarsPhotoDto(
+data class MarsPhotoDto(
     val camera: Camera,
     val earth_date: String, // **
     val id: Int, // **
