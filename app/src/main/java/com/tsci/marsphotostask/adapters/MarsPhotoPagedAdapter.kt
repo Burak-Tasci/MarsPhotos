@@ -1,18 +1,21 @@
 package com.tsci.marsphotostask.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.bumptech.glide.Glide
 import com.tsci.marsphotostask.R
 import com.tsci.marsphotostask.databinding.MarsphotoItemBinding
+import com.tsci.marsphotostask.databinding.MarsphotoListitemBinding
 import com.tsci.marsphotostask.domain.model.MarsPhoto
-
+private const val TAG = "MarsPhotoPagedAdapter.kt"
 class MarsPhotoPagedAdapter: PagingDataAdapter<MarsPhoto, MarsPhotoPagedAdapter.MarsPhotoViewHolder>(diffCallback) {
 
-    inner class MarsPhotoViewHolder(val binding: MarsphotoItemBinding):
+    inner class MarsPhotoViewHolder(val binding: MarsphotoListitemBinding):
         RecyclerView.ViewHolder(binding.root)
 
     companion object{
@@ -29,32 +32,22 @@ class MarsPhotoPagedAdapter: PagingDataAdapter<MarsPhoto, MarsPhotoPagedAdapter.
     override fun onBindViewHolder(holder: MarsPhotoViewHolder, position: Int) {
 
         val currentItem = getItem(position)
-
+        Log.d(TAG, "onBindViewHolder: ${currentItem.toString()}")
         holder.binding.apply {
 
-            holder.itemView.apply {
-
-                photo.load(currentItem?.imgSrc){
-                    crossfade(true)
-                    crossfade(1000)
-                    placeholder(R.drawable.loading_animation)
-                    error(R.drawable.ic_baseline_broken_image_24)
-                }
-                currentItem?.also {
-                    roverName.text = it.roverName
-                    dateText.text = it.earthDate
-                    cameraName.text = it.cameraName
-                    missionStatus.text = it.status
-                    launchDateText.text = it.launchDate
-                    landingDateText.text = it.landingDate
-                }
+            listItem.load(currentItem?.imgSrc){
+                crossfade(true)
+                crossfade(1000)
+                placeholder(R.drawable.loading_animation)
+                error(R.drawable.ic_baseline_broken_image_24)
             }
+
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MarsPhotoViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MarsPhotoPagedAdapter.MarsPhotoViewHolder {
         return MarsPhotoViewHolder(
-            MarsphotoItemBinding.inflate(
+            MarsphotoListitemBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
