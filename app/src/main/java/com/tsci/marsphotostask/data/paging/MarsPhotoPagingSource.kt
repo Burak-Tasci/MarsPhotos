@@ -12,7 +12,7 @@ import java.lang.Exception
 import javax.inject.Inject
 
 private const val TAG = "MarsPhotoPagingSource.kt"
-class MarsPhotoPagingSource @Inject constructor(
+internal class MarsPhotoPagingSource @Inject constructor(
     private val marsPhotoApi: MarsPhotoApi,
     private val rover: Constants.Rovers
 ) : PagingSource<Int, MarsPhoto>() {
@@ -21,11 +21,10 @@ class MarsPhotoPagingSource @Inject constructor(
     }
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, MarsPhoto> {
-        Log.d(TAG, "load: ${params.key}")
         return try {
             val currentPage = params.key ?: 1
             val responseData = when (rover) {
-                CURIOUSITY -> {
+                CURIOSITY -> {
                     marsPhotoApi.getCuriosityMarsPhotos(page = currentPage).photos.map { it.toMarsPhoto() }
                 }
                 OPPORTUNITY -> {
