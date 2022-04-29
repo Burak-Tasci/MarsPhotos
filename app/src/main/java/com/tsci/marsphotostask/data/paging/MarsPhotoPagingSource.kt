@@ -26,14 +26,14 @@ class MarsPhotoPagingSource @Inject constructor(
             val currentPage = params.key ?: 1
             val responseData = when (rover) {
                 CURIOUSITY -> {
-                    marsPhotoApi.getCuriosityMarsPhotos(page = currentPage).map { it.toMarsPhoto() }
+                    marsPhotoApi.getCuriosityMarsPhotos(page = currentPage).photos.map { it.toMarsPhoto() }
                 }
                 OPPORTUNITY -> {
-                    marsPhotoApi.getOpportunityMarsPhotos(page = currentPage)
+                    marsPhotoApi.getOpportunityMarsPhotos(page = currentPage).photos
                         .map { it.toMarsPhoto() }
                 }
                 SPIRIT -> {
-                    marsPhotoApi.getSpiritMarsPhotos(page = currentPage).map { it.toMarsPhoto() }
+                    marsPhotoApi.getSpiritMarsPhotos(page = currentPage).photos.map { it.toMarsPhoto() }
                 }
             }
             Log.d(TAG, "load: $responseData")
