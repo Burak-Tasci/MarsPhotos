@@ -1,6 +1,16 @@
 <resources>
+    <!-- APP NAME OBVIOUSLY -->
     <string name="app_name">Mars Photos Task</string>
-    <string name="tab_text_1">CURIOUSITY</string>
-    <string name="tab_text_2">OPPORTUNITY</string>
-    <string name="tab_text_3">SPIRIT</string>
+    <!-- TAB NAMES !-->
+    <string name="tab1">CURIOUSITY</string>
+    <string name="tab2">OPPORTUNITY</string>
+    <string name="tab3">SPIRIT</string>
+    <!-- DIALOG ERROR TEXTS-->
+    <string name="dialog_error">Error</string>
+    <string name="dialog_message">Cannot Access Item</string>
+    <!-- DIALOG SUCCESS TEXTS !-->
+    <string name="camera_name">Camera Name: %s</string>
+    <string name="mission_status">Mission Status: %s</string>
+    <string name="launch_date">Launch Date: %s</string>
+    <string name="landing_date">Landing Date: %s</string>
 </resources>
