@@ -5,41 +5,48 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.tsci.marsphotostask.common.Constants
 import com.tsci.marsphotostask.common.Constants.Rovers.*
-import com.tsci.marsphotostask.data.remote.MarsPhotoApi
 import com.tsci.marsphotostask.data.remote.dto.toMarsPhoto
 import com.tsci.marsphotostask.domain.model.MarsPhoto
-import java.lang.Exception
+import com.tsci.marsphotostask.domain.repository.MarsPhotoRepository
 import javax.inject.Inject
 
 private const val TAG = "MarsPhotoPagingSource.kt"
 internal class MarsPhotoPagingSource @Inject constructor(
-    private val marsPhotoApi: MarsPhotoApi,
+    private val repository: MarsPhotoRepository,
     private val rover: Constants.Rovers
 ) : PagingSource<Int, MarsPhoto>() {
     override fun getRefreshKey(state: PagingState<Int, MarsPhoto>): Int? {
-        return null
+        return state.anchorPosition?.let { anchorPosition ->
+            val anchorPage = state.closestPageToPosition(anchorPosition)
+            anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)
+        }
+
     }
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, MarsPhoto> {
         return try {
             val currentPage = params.key ?: 1
-            val responseData = when (rover) {
+            val response = when (rover) {
                 CURIOSITY -> {
-                    marsPhotoApi.getCuriosityMarsPhotos(page = currentPage).photos.map { it.toMarsPhoto() }
+                    repository.getCuriosityMarsPhotos(page = currentPage).photos
+                        .map { it.toMarsPhoto() }
                 }
                 OPPORTUNITY -> {
-                    marsPhotoApi.getOpportunityMarsPhotos(page = currentPage).photos
+                    repository.getOpportunityMarsPhotos(page = currentPage).photos
                         .map { it.toMarsPhoto() }
                 }
                 SPIRIT -> {
-                    marsPhotoApi.getSpiritMarsPhotos(page = currentPage).photos.map { it.toMarsPhoto() }
+                    repository.getSpiritMarsPhotos(page = currentPage).photos
+                        .map { it.toMarsPhoto() }
                 }
             }
-            Log.d(TAG, "load: $responseData")
 
+            val responseData = mutableListOf<MarsPhoto>()
+            responseData.addAll(response)
+                Log.d(TAG, "load - ${rover.name}: $responseData")
             LoadResult.Page(
                 data = responseData,
-                prevKey = if (currentPage == 1) null else -1,
+                prevKey = null,
                 nextKey = currentPage.plus(1)
             )
 
