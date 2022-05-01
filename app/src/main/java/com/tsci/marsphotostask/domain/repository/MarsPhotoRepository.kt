@@ -5,11 +5,5 @@ import com.tsci.marsphotostask.data.remote.dto.MarsPhotosDto
 
 interface MarsPhotoRepository {
 
-    suspend fun getCuriosityMarsPhotos(sol: Int , page: Int, api_key: String = API_KEY) : MarsPhotosDto
-
-    suspend fun getSpiritMarsPhotos(sol: Int , page: Int, api_key: String = API_KEY) : MarsPhotosDto
-
-    suspend fun getOpportunityMarsPhotos(sol: Int , page: Int, api_key: String = API_KEY) : MarsPhotosDto
-
-
+    suspend fun getRoverMarsPhotos(roverName: String, sol: Int = 1002 , page: Int, api_key: String = API_KEY) : MarsPhotosDto
 }
