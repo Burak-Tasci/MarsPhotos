@@ -12,9 +12,8 @@ internal class OpportunityFragment: BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        var sol: Int = 2
         lifecycleScope.launch{
-            viewModel.getPhotos(Constants.Rovers.OPPORTUNITY, sol = sol++).collect{ pagingData ->
+            viewModel.getPhotos(Constants.Rovers.OPPORTUNITY.name).collect{ pagingData ->
                 mAdapter.submitData(pagingData)
             }
         }
