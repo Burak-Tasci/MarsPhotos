@@ -1,7 +1,7 @@
 package com.tsci.marsphotostask.data.repository
 
 import com.tsci.marsphotostask.data.remote.MarsPhotoApi
-import com.tsci.marsphotostask.data.remote.dto.ResponseApi
+import com.tsci.marsphotostask.data.remote.dto.MarsPhotosDto
 import com.tsci.marsphotostask.domain.repository.MarsPhotoRepository
 import javax.inject.Inject
 
@@ -12,19 +12,19 @@ internal class MarsPhotoRepositoryImpl @Inject constructor(
         sol: Int,
         page: Int,
         api_key: String
-    ): ResponseApi = api.getCuriosityMarsPhotos(page = page)
+    ): MarsPhotosDto = api.getCuriosityMarsPhotos(sol = sol, page = page)
 
     override suspend fun getSpiritMarsPhotos(
         sol: Int,
         page: Int,
         api_key: String
-    ): ResponseApi =  api.getSpiritMarsPhotos(page = page)
+    ): MarsPhotosDto =  api.getSpiritMarsPhotos(sol = sol, page = page)
 
     override suspend fun getOpportunityMarsPhotos(
         sol: Int,
         page: Int,
         api_key: String
-    ): ResponseApi = api.getOpportunityMarsPhotos(page = page)
+    ): MarsPhotosDto = api.getOpportunityMarsPhotos(sol = sol, page = page)
 
 
 }

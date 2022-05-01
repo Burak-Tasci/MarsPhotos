@@ -13,8 +13,10 @@ import javax.inject.Inject
 private const val TAG = "MarsPhotoPagingSource.kt"
 internal class MarsPhotoPagingSource @Inject constructor(
     private val repository: MarsPhotoRepository,
-    private val rover: Constants.Rovers
+    private val rover: Constants.Rovers,
+    private val sol: Int
 ) : PagingSource<Int, MarsPhoto>() {
+
     override fun getRefreshKey(state: PagingState<Int, MarsPhoto>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
             val anchorPage = state.closestPageToPosition(anchorPosition)
@@ -28,25 +30,25 @@ internal class MarsPhotoPagingSource @Inject constructor(
             val currentPage = params.key ?: 1
             val response = when (rover) {
                 CURIOSITY -> {
-                    repository.getCuriosityMarsPhotos(page = currentPage).photos
+                    repository.getCuriosityMarsPhotos(page = currentPage, sol = sol).photos
                         .map { it.toMarsPhoto() }
                 }
                 OPPORTUNITY -> {
-                    repository.getOpportunityMarsPhotos(page = currentPage).photos
+                    repository.getOpportunityMarsPhotos(page = currentPage, sol = sol).photos
                         .map { it.toMarsPhoto() }
                 }
                 SPIRIT -> {
-                    repository.getSpiritMarsPhotos(page = currentPage).photos
+                    repository.getSpiritMarsPhotos(page = currentPage, sol = sol).photos
                         .map { it.toMarsPhoto() }
                 }
             }
 
             val responseData = mutableListOf<MarsPhoto>()
             responseData.addAll(response)
-                Log.d(TAG, "load - ${rover.name}: $responseData")
+                Log.d(TAG, "load: $responseData")
             LoadResult.Page(
                 data = responseData,
-                prevKey = null,
+                prevKey = if (currentPage == 1) null else -1,
                 nextKey = currentPage.plus(1)
             )
 

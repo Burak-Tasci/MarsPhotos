@@ -1,14 +1,15 @@
 package com.tsci.marsphotostask.domain.repository
 
-import com.tsci.marsphotostask.data.remote.dto.ResponseApi
+import com.tsci.marsphotostask.common.Constants.API_KEY
+import com.tsci.marsphotostask.data.remote.dto.MarsPhotosDto
 
 interface MarsPhotoRepository {
 
-    suspend fun getCuriosityMarsPhotos(sol: Int, page: Int, api_key: String) : ResponseApi
+    suspend fun getCuriosityMarsPhotos(sol: Int , page: Int, api_key: String = API_KEY) : MarsPhotosDto
 
-    suspend fun getSpiritMarsPhotos(sol: Int, page: Int, api_key: String) : ResponseApi
+    suspend fun getSpiritMarsPhotos(sol: Int , page: Int, api_key: String = API_KEY) : MarsPhotosDto
 
-    suspend fun getOpportunityMarsPhotos(sol: Int, page: Int, api_key: String) : ResponseApi
+    suspend fun getOpportunityMarsPhotos(sol: Int , page: Int, api_key: String = API_KEY) : MarsPhotosDto
 
 
 }
