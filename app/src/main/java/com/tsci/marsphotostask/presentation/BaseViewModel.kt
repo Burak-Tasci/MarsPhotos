@@ -7,6 +7,7 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
+import com.tsci.marsphotostask.common.Constants
 import com.tsci.marsphotostask.data.paging.MarsPhotoPagingSource
 import com.tsci.marsphotostask.domain.model.MarsPhoto
 import com.tsci.marsphotostask.domain.repository.MarsPhotoRepository
@@ -22,14 +23,30 @@ class BaseViewModel @Inject constructor(
 ) : ViewModel() {
 
     internal val filters: MutableLiveData<List<String>> = MutableLiveData(
-        listOf(
-            "FHAZ", "RHAZ", "MAST", "CHEMCAM", "MAHLI", "MARDI", "NAVCAM", "PANCAM", "MINITES"
+        listOf("FHAZ", "RHAZ", "MAST", "CHEMCAM", "MAHLI", "MARDI", "NAVCAM", "PANCAM", "MINITES")
+    )
+
+    internal val cameras: Map<String, MutableList<String>> = mapOf(
+        Constants.Rovers.CURIOSITY.name to mutableListOf(
+            "FHAZ", "RHAZ", "MAST", "CHEMCAM", "MAHLI", "MARDI", "NAVCAM"
+        ),
+        Constants.Rovers.OPPORTUNITY.name to mutableListOf(
+            "FHAZ", "RHAZ", "NAVCAM", "PANCAM", "MINITES"
+
+        ),
+        Constants.Rovers.SPIRIT.name to mutableListOf(
+            "FHAZ", "RHAZ", "NAVCAM", "PANCAM", "MINITES"
         )
     )
+
     internal fun getPhotos(roverName: String, filters: List<String>): Flow<PagingData<MarsPhoto>> {
-        return  Pager(PagingConfig(pageSize = 1,
-            initialLoadSize = 1,
-            prefetchDistance = 1)) {
+        return Pager(
+            PagingConfig(
+                pageSize = 1,
+                initialLoadSize = 1,
+                prefetchDistance = 1
+            )
+        ) {
             MarsPhotoPagingSource(repository, rover = roverName, filters = filters)
         }.flow.cachedIn(viewModelScope)
     }
