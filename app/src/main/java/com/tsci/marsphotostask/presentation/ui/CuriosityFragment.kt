@@ -12,9 +12,14 @@ internal class CuriosityFragment: BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        lifecycleScope.launch{
-            viewModel.getPhotos(Constants.Rovers.CURIOSITY.name).collect{ pagingData ->
-                mAdapter.submitData(pagingData)
+        viewModel.filters.observe(viewLifecycleOwner) {
+            lifecycleScope.launch {
+                viewModel.getPhotos(
+                    roverName = Constants.Rovers.CURIOSITY.name,
+                    filters = it ?: emptyList()
+                ).collect{
+                    mAdapter.submitData(pagingData = it)
+                }
             }
         }
 

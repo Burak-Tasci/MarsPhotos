@@ -1,7 +1,6 @@
 package com.tsci.marsphotostask.data.paging
 
 import android.util.Log
-import androidx.lifecycle.MutableLiveData
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.tsci.marsphotostask.data.remote.dto.toMarsPhoto
@@ -10,10 +9,12 @@ import com.tsci.marsphotostask.domain.repository.MarsPhotoRepository
 import javax.inject.Inject
 
 private const val TAG = "MarsPhotoPagingSource.kt"
+
 internal class MarsPhotoPagingSource @Inject constructor(
     private val repository: MarsPhotoRepository,
-    private val rover: String
-    ) : PagingSource<Int, MarsPhoto>() {
+    private val rover: String,
+    val filters: List<String>
+) : PagingSource<Int, MarsPhoto>() {
 
     override fun getRefreshKey(state: PagingState<Int, MarsPhoto>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
@@ -23,20 +24,21 @@ internal class MarsPhotoPagingSource @Inject constructor(
     }
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, MarsPhoto> {
-         return try {
+        return try {
             val currentPage = params.key ?: 1
             val response = repository.getRoverMarsPhotos(
                 roverName = rover,
-                page = currentPage
+                page = currentPage,
+                filters = filters
             ).photos.map { it.toMarsPhoto() }
 
             val responseData = mutableListOf<MarsPhoto>()
             responseData.addAll(response)
-                Log.d(TAG, "load: $responseData")
+            Log.d(TAG, "load: $responseData")
 
-             if (responseData == mutableListOf<MarsPhoto>()) {
-                 throw Exception("End of page")
-             }
+            if (responseData == mutableListOf<MarsPhoto>()) {
+                throw Exception("End of page")
+            }
 
             LoadResult.Page(
                 data = responseData,
