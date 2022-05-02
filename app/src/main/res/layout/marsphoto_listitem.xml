@@ -18,6 +18,7 @@
             android:layout_width="match_parent"
             android:scaleType="fitXY"
             openPopupWindow="@{photo}"
+            android:minHeight="150dp"
             bindImage="@{photo.imgSrc}"
             android:layout_height="match_parent"
             tools:src="@drawable/ic_launcher_background"
