@@ -1,19 +1,12 @@
 package com.tsci.marsphotostask.presentation.adapters
 
-import android.app.AlertDialog
-import android.app.Dialog
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentManager
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import coil.load
-import com.tsci.marsphotostask.R
 import com.tsci.marsphotostask.databinding.MarsphotoListitemBinding
 import com.tsci.marsphotostask.domain.model.MarsPhoto
-import com.tsci.marsphotostask.presentation.ui.ItemPopupWindow
 
 
 private const val TAG = "MarsPhotoPagedAdapter.kt"

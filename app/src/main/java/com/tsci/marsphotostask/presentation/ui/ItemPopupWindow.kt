@@ -5,9 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
-import coil.load
-import com.google.android.material.shape.CornerFamily
-import com.google.android.material.shape.ShapeAppearanceModel
 import com.tsci.marsphotostask.R
 import com.tsci.marsphotostask.databinding.MarsphotoItemBinding
 import com.tsci.marsphotostask.domain.model.MarsPhoto

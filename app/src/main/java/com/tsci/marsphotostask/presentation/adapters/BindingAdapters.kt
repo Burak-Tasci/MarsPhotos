@@ -1,6 +1,5 @@
 package com.tsci.marsphotostask.presentation.adapters
 
-import android.app.Activity
 import android.app.AlertDialog
 import android.app.Dialog
 import android.widget.ImageView
@@ -12,10 +11,8 @@ import com.google.android.material.shape.CornerFamily
 import com.google.android.material.shape.ShapeAppearanceModel
 import com.tsci.marsphotostask.R
 import com.tsci.marsphotostask.domain.model.MarsPhoto
-import com.tsci.marsphotostask.presentation.ui.FilterWindow
 import com.tsci.marsphotostask.presentation.ui.ItemPopupWindow
 import dagger.hilt.android.internal.managers.ViewComponentManager
-import java.lang.System.load
 
 @BindingAdapter("bindShapeableImage")
 fun bindShapeableImage(imgView: ShapeableImageView, imgUrl: String?) {
