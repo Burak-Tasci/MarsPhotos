@@ -24,4 +24,7 @@
     <string name="navcam">NAVCAM</string>
     <string name="pancam">PANCAM</string>
     <string name="minites">MINITES</string>
+    <!-- CONTENT DESCRIPTIONS !-->
+    <string name="listitem_contentdescription">Photograph from Mars</string>
+    <string name="filterbutton_contentdescription">Filter Button</string>
 </resources>

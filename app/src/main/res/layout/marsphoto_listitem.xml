@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:scaleType="fitXY"
         android:layout_height="match_parent"
-        tools:src="@drawable/ic_launcher_background"/>
+        tools:src="@drawable/ic_launcher_background"
+        android:contentDescription="@string/listitem_contentdescription" />
 
 </androidx.cardview.widget.CardView>

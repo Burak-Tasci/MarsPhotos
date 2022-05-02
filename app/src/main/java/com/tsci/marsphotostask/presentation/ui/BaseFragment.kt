@@ -27,7 +27,7 @@ open class BaseFragment : Fragment() {
     private var _binding: FragmentMainBinding? = null
     // This property is only valid between onCreateView and
     // onDestroyView.
-    protected val binding get() = _binding!!
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

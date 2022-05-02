@@ -1,6 +1,7 @@
 package com.tsci.marsphotostask.presentation.adapters
 
 import android.app.AlertDialog
+import android.app.Dialog
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
@@ -29,7 +30,7 @@ internal class MarsPhotoPagedAdapter(
                 return oldItem.id == newItem.id
             }
             override fun areContentsTheSame(oldItem: MarsPhoto, newItem: MarsPhoto): Boolean {
-                return oldItem.equals(newItem)
+                return oldItem == newItem
             }
         }
     }
@@ -64,8 +65,9 @@ internal class MarsPhotoPagedAdapter(
                     )
                     alertDialog.setIcon(R.drawable.ic_baseline_error_24)
                     alertDialog.setButton(
+                        Dialog.BUTTON_NEGATIVE,
                         "OK"
-                    ) { dialog, which -> alertDialog.cancel() }
+                    ) { _, _ -> alertDialog.cancel() }
                     alertDialog.show()
                 }
                 true

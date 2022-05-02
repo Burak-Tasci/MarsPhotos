@@ -19,10 +19,10 @@ class ItemPopupWindow(
     private var _binding: MarsphotoItemBinding? = null
     // This property is only valid between onCreateView and
     // onDestroyView.
-    protected val binding get() = _binding!!
+    private val binding get() = _binding!!
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        dialog!!.window?.setBackgroundDrawableResource(R.drawable.round_corner);
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        dialog!!.window?.setBackgroundDrawableResource(R.drawable.round_corner)
         _binding = MarsphotoItemBinding.inflate(inflater, container, false)
         return binding.root
     }

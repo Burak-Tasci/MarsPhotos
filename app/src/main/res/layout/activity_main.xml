@@ -21,10 +21,11 @@
                 android:id="@+id/filter_button"
                 android:layout_width="36dp"
                 android:layout_height="36dp"
-                android:background="?selectableItemBackgroundBorderless"
-                android:clickable="true"
                 android:layout_gravity="center_vertical|end"
                 android:layout_marginEnd="8dp"
+                android:background="?selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:contentDescription="@string/filterbutton_contentdescription"
                 android:focusable="true"
                 app:srcCompat="@drawable/ic_baseline_filter_alt_24" />
 

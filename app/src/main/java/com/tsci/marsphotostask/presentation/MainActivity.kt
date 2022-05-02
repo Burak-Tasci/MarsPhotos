@@ -1,10 +1,8 @@
 package com.tsci.marsphotostask.presentation
 
 import android.os.Bundle
-import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.tabs.TabLayoutMediator
-import com.tsci.marsphotostask.R
 import com.tsci.marsphotostask.common.Constants
 import com.tsci.marsphotostask.databinding.ActivityMainBinding
 import com.tsci.marsphotostask.presentation.adapters.ViewPagerAdapter

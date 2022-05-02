@@ -9,7 +9,6 @@ import android.widget.CheckBox
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import com.tsci.marsphotostask.R
-import com.tsci.marsphotostask.databinding.ActivityMainBinding
 import com.tsci.marsphotostask.databinding.FilterLayoutBinding
 import com.tsci.marsphotostask.presentation.BaseViewModel
 
@@ -23,10 +22,10 @@ class FilterWindow:
     private var _binding: FilterLayoutBinding? = null
     // This property is only valid between onCreateView and
     // onDestroyView.
-    protected val binding get() = _binding!!
+    private val binding get() = _binding!!
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        dialog!!.window?.setBackgroundDrawableResource(R.drawable.round_corner);
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View{
+        dialog!!.window?.setBackgroundDrawableResource(R.drawable.round_corner)
         _binding = FilterLayoutBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -44,7 +43,7 @@ class FilterWindow:
             filterButtonClicked()
             Log.d(TAG, "onViewCreated: ${viewModel.filters.value}")
             dismiss()
-            
+
         }
     }
 
@@ -53,10 +52,7 @@ class FilterWindow:
             for (index in 0 until checkboxes.childCount){
                 val child: View = checkboxes.getChildAt(index)
                 if (child is CheckBox){
-                    if (viewModel.filters.value!!.contains(child.text.toString()))
-                        child.isChecked = true
-                    else
-                        child.isChecked = false
+                    child.isChecked = viewModel.filters.value!!.contains(child.text.toString())
                 }
             }
         }

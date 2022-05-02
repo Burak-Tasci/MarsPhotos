@@ -3,9 +3,20 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/ABRA/AndroidStudioProjects/MarsPhotosTask/app/src/main/res/layout/activity_main.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/ABRA/AndroidStudioProjects/MarsPhotosTask/app/src/main/res/drawable-v24/loading_img.xml" value="0.1145" />
+        <entry key="..\:/Users/ABRA/AndroidStudioProjects/MarsPhotosTask/app/src/main/res/drawable/ic_baseline_broken_image_24.xml" value="0.165" />
+        <entry key="..\:/Users/ABRA/AndroidStudioProjects/MarsPhotosTask/app/src/main/res/drawable/ic_baseline_error_24.xml" value="0.165" />
+        <entry key="..\:/Users/ABRA/AndroidStudioProjects/MarsPhotosTask/app/src/main/res/drawable/ic_baseline_filter_alt_24.xml" value="0.172" />
+        <entry key="..\:/Users/ABRA/AndroidStudioProjects/MarsPhotosTask/app/src/main/res/drawable/round_corner.xml" value="0.172" />
+        <entry key="..\:/Users/ABRA/AndroidStudioProjects/MarsPhotosTask/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Users/ABRA/AndroidStudioProjects/MarsPhotosTask/app/src/main/res/layout/filter_layout.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/ABRA/AndroidStudioProjects/MarsPhotosTask/app/src/main/res/layout/fragment_main.xml" value="0.27447916666666666" />
-        <entry key="..\:/Users/ABRA/AndroidStudioProjects/MarsPhotosTask/app/src/main/res/layout/marsphoto_item.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/ABRA/AndroidStudioProjects/MarsPhotosTask/app/src/main/res/layout/marsphoto_item.xml" value="0.1" />
+        <entry key="..\:/Users/ABRA/AndroidStudioProjects/MarsPhotosTask/app/src/main/res/layout/marsphoto_listitem.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/ABRA/AndroidStudioProjects/MarsPhotosTask/app/src/main/res/layout/spinner_item.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/ABRA/AndroidStudioProjects/MarsPhotosTask/app/src/main/res/layout/toolbar_spinner.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/ABRA/AndroidStudioProjects/MarsPhotosTask/app/src/main/res/menu/filter_menu.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/ABRA/AndroidStudioProjects/MarsPhotosTask/app/src/main/res/xml/network_security_config.xml" value="0.27447916666666666" />
       </map>
     </option>
   </component>

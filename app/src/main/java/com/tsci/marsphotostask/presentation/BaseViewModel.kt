@@ -26,8 +26,6 @@ class BaseViewModel @Inject constructor(
             "FHAZ", "RHAZ", "MAST", "CHEMCAM", "MAHLI", "MARDI", "NAVCAM", "PANCAM", "MINITES"
         )
     )
-    internal val pagingData: MutableLiveData<PagingData<MarsPhoto>> = MutableLiveData()
-
     internal fun getPhotos(roverName: String, filters: List<String>): Flow<PagingData<MarsPhoto>> {
         return  Pager(PagingConfig(pageSize = 1,
             initialLoadSize = 1,
@@ -35,6 +33,4 @@ class BaseViewModel @Inject constructor(
             MarsPhotoPagingSource(repository, rover = roverName, filters = filters)
         }.flow.cachedIn(viewModelScope)
     }
-
-
 }

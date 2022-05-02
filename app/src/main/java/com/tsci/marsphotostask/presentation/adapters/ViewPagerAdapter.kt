@@ -5,17 +5,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.tsci.marsphotostask.R
-import com.tsci.marsphotostask.common.Constants.Rovers.*
 import com.tsci.marsphotostask.presentation.ui.CuriosityFragment
 import com.tsci.marsphotostask.presentation.ui.OpportunityFragment
 import com.tsci.marsphotostask.presentation.ui.SpiritFragment
-import java.lang.Exception
 
-/**
- * A [FragmentPagerAdapter] that returns a fragment corresponding to
- * one of the sections/tabs/pages.
- */
 private const val TAG = "ViewPagerAdapter.kt"
 internal class ViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
     FragmentStateAdapter(
