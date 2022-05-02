@@ -1,25 +1,30 @@
-package com.tsci.marsphotostask.adapters
+package com.tsci.marsphotostask.presentation.adapters
 
-import android.util.Log
+import android.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentManager
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.bumptech.glide.Glide
 import com.tsci.marsphotostask.R
-import com.tsci.marsphotostask.databinding.MarsphotoItemBinding
 import com.tsci.marsphotostask.databinding.MarsphotoListitemBinding
 import com.tsci.marsphotostask.domain.model.MarsPhoto
-private const val TAG = "MarsPhotoPagedAdapter.kt"
-class MarsPhotoPagedAdapter: PagingDataAdapter<MarsPhoto, MarsPhotoPagedAdapter.MarsPhotoViewHolder>(diffCallback) {
+import com.tsci.marsphotostask.presentation.ui.ItemPopupWindow
 
-    inner class MarsPhotoViewHolder(val binding: MarsphotoListitemBinding):
+
+private const val TAG = "MarsPhotoPagedAdapter.kt"
+internal class MarsPhotoPagedAdapter(
+    private val fragmentManager: FragmentManager
+): PagingDataAdapter<MarsPhoto, MarsPhotoPagedAdapter.MarsPhotoViewHolder>(diffCallback) {
+
+    internal inner class MarsPhotoViewHolder(val binding: MarsphotoListitemBinding):
         RecyclerView.ViewHolder(binding.root)
 
     companion object{
-        val diffCallback = object: DiffUtil.ItemCallback<MarsPhoto>(){
+        private val diffCallback = object: DiffUtil.ItemCallback<MarsPhoto>(){
             override fun areItemsTheSame(oldItem: MarsPhoto, newItem: MarsPhoto): Boolean {
                 return oldItem.id == newItem.id
             }
@@ -32,7 +37,6 @@ class MarsPhotoPagedAdapter: PagingDataAdapter<MarsPhoto, MarsPhotoPagedAdapter.
     override fun onBindViewHolder(holder: MarsPhotoViewHolder, position: Int) {
 
         val currentItem = getItem(position)
-        Log.d(TAG, "onBindViewHolder: ${currentItem.toString()}")
         holder.binding.apply {
 
             listItem.load(currentItem?.imgSrc){
@@ -42,6 +46,30 @@ class MarsPhotoPagedAdapter: PagingDataAdapter<MarsPhoto, MarsPhotoPagedAdapter.
                 error(R.drawable.ic_baseline_broken_image_24)
             }
 
+            listItem.setOnLongClickListener {
+
+                if (currentItem != null) {
+                    ItemPopupWindow(
+                        currentItem
+                    ).show(
+                        fragmentManager,
+                        "Item Popup Window"
+                    )
+                }
+                else{
+                    val alertDialog = AlertDialog.Builder(holder.itemView.context as AppCompatActivity).create()
+                    alertDialog.setTitle(R.string.dialog_error)
+                    alertDialog.setMessage(
+                        it.context.getString(R.string.dialog_message)
+                    )
+                    alertDialog.setIcon(R.drawable.ic_baseline_error_24)
+                    alertDialog.setButton(
+                        "OK"
+                    ) { dialog, which -> alertDialog.cancel() }
+                    alertDialog.show()
+                }
+                true
+            }
         }
     }
 

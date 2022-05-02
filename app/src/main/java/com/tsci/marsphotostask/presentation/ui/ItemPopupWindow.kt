@@ -12,7 +12,7 @@ import com.tsci.marsphotostask.R
 import com.tsci.marsphotostask.databinding.MarsphotoItemBinding
 import com.tsci.marsphotostask.domain.model.MarsPhoto
 
-class CustomDialog(
+class ItemPopupWindow(
     private val item: MarsPhoto
 ): DialogFragment(R.layout.marsphoto_item) {
 
@@ -22,7 +22,7 @@ class CustomDialog(
     protected val binding get() = _binding!!
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        getDialog()!!.getWindow()?.setBackgroundDrawableResource(R.drawable.round_corner);
+        dialog!!.window?.setBackgroundDrawableResource(R.drawable.round_corner);
         _binding = MarsphotoItemBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -30,7 +30,6 @@ class CustomDialog(
     override fun onStart() {
         super.onStart()
         val width = (resources.displayMetrics.widthPixels * 0.85).toInt()
-        val height = (resources.displayMetrics.heightPixels * 0.40).toInt()
         dialog!!.window?.setLayout(width, ViewGroup.LayoutParams.WRAP_CONTENT)
     }
 
