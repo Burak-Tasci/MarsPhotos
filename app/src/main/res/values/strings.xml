@@ -13,4 +13,15 @@
     <string name="mission_status">Mission Status: %s</string>
     <string name="launch_date">Launch Date: %s</string>
     <string name="landing_date">Landing Date: %s</string>
+    <string name="filter_button_text">FILTER</string>
+    <!-- FILTER CHECKBOX TEXTS !-->
+    <string name="fhaz">FHAZ</string>
+    <string name="rhaz">RHAZ</string>
+    <string name="mast">MAST</string>
+    <string name="chemcam">CHEMCAM</string>
+    <string name="mahli">MAHLI</string>
+    <string name="mardi">MARDI</string>
+    <string name="navcam">NAVCAM</string>
+    <string name="pancam">PANCAM</string>
+    <string name="minites">MINITES</string>
 </resources>

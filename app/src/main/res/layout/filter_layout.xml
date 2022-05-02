@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <LinearLayout
+        android:id="@+id/checkboxes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <CheckBox
+            android:id="@+id/fhaz"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/fhaz"
+            android:textSize="16sp" />
+
+        <CheckBox
+            android:id="@+id/rhaz"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/rhaz"
+            android:textSize="16sp" />
+
+        <CheckBox
+            android:id="@+id/mast"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/mast"
+            android:textSize="16sp" />
+
+        <CheckBox
+            android:id="@+id/chemcam"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/chemcam"
+            android:textSize="16sp" />
+
+        <CheckBox
+            android:id="@+id/mahli"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/mahli"
+            android:textSize="16sp" />
+
+        <CheckBox
+            android:id="@+id/mardi"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/mardi"
+            android:textSize="16sp" />
+
+        <CheckBox
+            android:id="@+id/navcam"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/navcam"
+            android:textSize="16sp" />
+
+        <CheckBox
+            android:id="@+id/pancam"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/pancam"
+            android:textSize="16sp" />
+
+        <CheckBox
+            android:id="@+id/minites"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/minites"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/submit_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="@string/filter_button_text"
+        app:layout_constraintEnd_toEndOf="@id/checkboxes"
+        app:layout_constraintTop_toBottomOf="@id/checkboxes" />
+</androidx.constraintlayout.widget.ConstraintLayout>
