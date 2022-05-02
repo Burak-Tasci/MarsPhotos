@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId "com.tsci.marsphotostask"
-        minSdk 23
+        minSdk 24
         targetSdk 32
         versionCode 1
         versionName "1.0"
@@ -75,4 +75,5 @@ dependencies {
 
     // viewpager2
     implementation 'androidx.viewpager2:viewpager2:1.0.0'
+
 }

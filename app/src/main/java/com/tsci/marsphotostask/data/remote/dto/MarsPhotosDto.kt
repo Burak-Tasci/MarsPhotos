@@ -1,5 +1,5 @@
 package com.tsci.marsphotostask.data.remote.dto
 
-data class ResponseApi(
+data class MarsPhotosDto(
     val photos: List<Photo>
 )

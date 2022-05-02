@@ -7,9 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.tsci.marsphotostask.presentation.adapters.MarsPhotoPagedAdapter
 import com.tsci.marsphotostask.databinding.FragmentMainBinding
-import com.tsci.marsphotostask.presentation.PageViewModel
+import com.tsci.marsphotostask.presentation.BaseViewModel
+import com.tsci.marsphotostask.presentation.adapters.MarsPhotoPagedAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -19,9 +19,9 @@ private const val TAG = "BaseFragment.kt"
  * A placeholder fragment containing a simple view.
  */
 @AndroidEntryPoint
-open class BaseFragment() : Fragment() {
+open class BaseFragment : Fragment() {
 
-    protected val viewModel: PageViewModel by activityViewModels()
+    protected val viewModel: BaseViewModel by activityViewModels()
     internal lateinit var mAdapter: MarsPhotoPagedAdapter
 
     private var _binding: FragmentMainBinding? = null
@@ -34,14 +34,13 @@ open class BaseFragment() : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
-        val root = binding.root
-        return root
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        mAdapter = MarsPhotoPagedAdapter(requireContext())
+        mAdapter = MarsPhotoPagedAdapter(requireActivity().supportFragmentManager)
 
         binding.recyclerView.apply {
             layoutManager = StaggeredGridLayoutManager(
