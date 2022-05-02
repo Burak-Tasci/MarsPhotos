@@ -16,35 +16,26 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.run {
             viewPager.adapter = ViewPagerAdapter(supportFragmentManager, lifecycle)
-            viewPager.offscreenPageLimit = 1000
             TabLayoutMediator(tabs, viewPager) { tab, position ->
                 when (position) {
-                    0 -> {
-                        tab.text = Constants.Rovers.CURIOSITY.name
-                    }
-                    1 -> {
-                        tab.text = Constants.Rovers.OPPORTUNITY.name
-                    }
-                    2 -> {
-                        tab.text = Constants.Rovers.SPIRIT.name
-                    }
+                    0 -> tab.text = Constants.Rovers.CURIOSITY.name
+                    1 -> tab.text = Constants.Rovers.OPPORTUNITY.name
+                    2 -> tab.text = Constants.Rovers.SPIRIT.name
                 }
             }.attach()
 
             filterButton.setOnClickListener {
-
                 FilterWindow().show(
                     supportFragmentManager,
                     "Filter Popup Window"
                 )
             }
         }
-
     }
-
 }

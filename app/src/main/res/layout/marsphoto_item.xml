@@ -1,78 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="16dp"
     xmlns:tools="http://schemas.android.com/tools">
-    <LinearLayout
-        android:orientation="vertical"
+
+    <data>
+        <variable
+            name="item"
+            type="com.tsci.marsphotostask.domain.model.MarsPhoto" />
+
+    </data>
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/photo"
-            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CustomDialogStyle"
-            tools:srcCompat="@drawable/ic_launcher_background"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scaleType="fitXY"/>
-        <RelativeLayout
-            android:layout_margin="8dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/rover_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_centerInParent="true"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
-                tools:text="OPPORTUNITY" />
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/earth_date"
-                android:layout_alignParentEnd="true"
-                android:textStyle="bold"
-                android:layout_width="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
-                tools:text="26.12.2000"/>
-        </RelativeLayout>
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp">
 
         <LinearLayout
-            android:layout_width="match_parent"
             android:orientation="vertical"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/camera_name"
-                android:layout_width="wrap_content"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/photo"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CustomDialogStyle"
+                tools:srcCompat="@drawable/ic_launcher_background"
+                android:layout_width="match_parent"
+                bindShapeableImage="@{item.imgSrc}"
                 android:layout_height="wrap_content"
-                tools:text="Camera: MAST"/>
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/mission_status"
-                android:layout_width="wrap_content"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
-                android:layout_height="wrap_content"
-                tools:text="Mission Status: Active"/>
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/launch_date"
-                android:layout_width="wrap_content"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
-                android:layout_height="wrap_content"
-                tools:text="Launch Date: 20.10.2005"/>
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/landing_date"
-                android:layout_width="wrap_content"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
-                android:layout_height="wrap_content"
-                tools:text="Landing Date: 24.5.2015"/>
+                android:scaleType="fitXY" />
 
+            <RelativeLayout
+                android:layout_margin="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/rover_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:text="@{item.roverName}"
+                    android:layout_centerInParent="true"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+                    tools:text="OPPORTUNITY" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/earth_date"
+                    android:layout_alignParentEnd="true"
+                    android:textStyle="bold"
+                    android:text="@{item.earthDate}"
+                    android:layout_width="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                    tools:text="26.12.2000" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/camera_name"
+                    android:layout_width="wrap_content"
+                    android:text="@{@string/camera_name(item.cameraName)}"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                    android:layout_height="wrap_content"
+                    tools:text="Camera: MAST" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/mission_status"
+                    android:layout_width="wrap_content"
+                    android:text="@{@string/mission_status(item.status)}"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                    android:layout_height="wrap_content"
+                    tools:text="Mission Status: Active" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/launch_date"
+                    android:layout_width="wrap_content"
+                    android:text="@{@string/launch_date(item.launchDate)}"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                    android:layout_height="wrap_content"
+                    tools:text="Launch Date: 20.10.2005" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/landing_date"
+                    android:layout_width="wrap_content"
+                    android:text="@{@string/landing_date(item.landingDate)}"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                    android:layout_height="wrap_content"
+                    tools:text="Landing Date: 24.5.2015" />
+
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
-</com.google.android.material.card.MaterialCardView>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

@@ -19,7 +19,6 @@ internal class SpiritFragment: BaseFragment() {
                     filters = it ?: emptyList()
                 ).collect{
                     mAdapter.submitData(pagingData = it)
-
                 }
             }
         }

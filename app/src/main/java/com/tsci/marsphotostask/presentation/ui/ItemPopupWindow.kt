@@ -24,6 +24,7 @@ class ItemPopupWindow(
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         dialog!!.window?.setBackgroundDrawableResource(R.drawable.round_corner)
         _binding = MarsphotoItemBinding.inflate(inflater, container, false)
+        binding.item = item
         return binding.root
     }
 
@@ -32,35 +33,5 @@ class ItemPopupWindow(
         val width = (resources.displayMetrics.widthPixels * 0.85).toInt()
         dialog!!.window?.setLayout(width, ViewGroup.LayoutParams.WRAP_CONTENT)
     }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        binding.run {
-
-            photo.load(
-                item.imgSrc
-            ){
-                placeholder(R.drawable.loading_animation)
-                error(R.drawable.ic_baseline_broken_image_24)
-            }
-            val shapeAppearanceModel = ShapeAppearanceModel()
-                .toBuilder()
-                .setAllCorners(CornerFamily.ROUNDED,
-                    resources.getDimension(R.dimen.corner_radius)
-                )
-                .build()
-
-            photo.shapeAppearanceModel = shapeAppearanceModel
-
-            roverName.text = item.roverName
-            earthDate.text = item.earthDate
-            cameraName.text = resources.getString(R.string.camera_name, item.cameraName)
-            landingDate.text = resources.getString(R.string.landing_date, item.landingDate)
-            launchDate.text = resources.getString(R.string.launch_date, item.launchDate)
-            missionStatus.text = resources.getString(R.string.mission_status, item.status)
-
-        }
-    }
-
 
 }
