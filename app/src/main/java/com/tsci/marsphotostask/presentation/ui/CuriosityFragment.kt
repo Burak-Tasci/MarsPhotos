@@ -11,7 +11,7 @@ internal class CuriosityFragment: BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.cameras.get(CURIOSITY.name)?.observe(viewLifecycleOwner) {
+        viewModel.cameras[CURIOSITY.name]?.observe(viewLifecycleOwner) {
             lifecycleScope.launch {
                 viewModel.getPhotos(
                     roverName = CURIOSITY.name,

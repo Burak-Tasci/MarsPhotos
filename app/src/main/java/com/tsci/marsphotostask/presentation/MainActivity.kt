@@ -32,8 +32,7 @@ class MainActivity : AppCompatActivity() {
 
 
             filterButton.setOnClickListener {
-                val currentLayout = binding.tabs.getSelectedTabPosition()
-                when (currentLayout ){
+                when (binding.tabs.selectedTabPosition){
                     0 -> FilterWindow(CURIOSITY.name).show(
                         supportFragmentManager,
                         "Filter Popup Window"

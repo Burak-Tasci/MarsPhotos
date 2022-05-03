@@ -9,7 +9,6 @@ import androidx.core.view.children
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import com.tsci.marsphotostask.R
-import com.tsci.marsphotostask.common.Constants
 import com.tsci.marsphotostask.common.Constants.Rovers.CURIOSITY
 import com.tsci.marsphotostask.databinding.FilterLayoutBinding
 import com.tsci.marsphotostask.presentation.BaseViewModel
@@ -55,11 +54,10 @@ class FilterWindow(private val roverName: String) :
     }
 
     private fun initializeCheckboxes() {
-        val cameras = viewModel.cameras.get(roverName)?.value
+        val cameras = viewModel.cameras[roverName]?.value
         for (child in binding.checkboxes.children) {
             if (child is CheckBox && child.visibility == View.VISIBLE) {
-                if (cameras!!.contains(child.text.toString())) child.isChecked = true
-                else child.isChecked = false
+                child.isChecked = cameras!!.contains(child.text.toString())
             }
         }
     }
@@ -72,7 +70,7 @@ class FilterWindow(private val roverName: String) :
                 if (child.isChecked) filters.add(child.text.toString())
             }
         }
-        viewModel.cameras.get(roverName)?.value = filters
+        viewModel.cameras[roverName]?.value = filters
     }
 
 

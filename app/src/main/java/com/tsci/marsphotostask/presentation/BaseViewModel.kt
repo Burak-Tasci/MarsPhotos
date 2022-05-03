@@ -1,6 +1,5 @@
 package com.tsci.marsphotostask.presentation
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -22,10 +21,6 @@ private const val TAG = "BaseViewModel.kt"
 class BaseViewModel @Inject constructor(
     private val repository: MarsPhotoRepository
 ) : ViewModel() {
-
-    internal val filters: MutableLiveData<List<String>> = MutableLiveData(
-        listOf("FHAZ", "RHAZ", "MAST", "CHEMCAM", "MAHLI", "MARDI", "NAVCAM", "PANCAM", "MINITES")
-    )
 
     internal val cameras: MutableMap<String, MutableLiveData<List<String>>> = mutableMapOf(
         Constants.Rovers.CURIOSITY.name to MutableLiveData<List<String>>(
