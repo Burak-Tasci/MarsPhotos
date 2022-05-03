@@ -3,7 +3,7 @@ package com.tsci.marsphotostask.presentation
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.tabs.TabLayoutMediator
-import com.tsci.marsphotostask.common.Constants
+import com.tsci.marsphotostask.common.Constants.Rovers.*
 import com.tsci.marsphotostask.databinding.ActivityMainBinding
 import com.tsci.marsphotostask.presentation.adapters.ViewPagerAdapter
 import com.tsci.marsphotostask.presentation.ui.FilterWindow
@@ -16,35 +16,37 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.run {
             viewPager.adapter = ViewPagerAdapter(supportFragmentManager, lifecycle)
-            viewPager.offscreenPageLimit = 1000
             TabLayoutMediator(tabs, viewPager) { tab, position ->
                 when (position) {
-                    0 -> {
-                        tab.text = Constants.Rovers.CURIOSITY.name
-                    }
-                    1 -> {
-                        tab.text = Constants.Rovers.OPPORTUNITY.name
-                    }
-                    2 -> {
-                        tab.text = Constants.Rovers.SPIRIT.name
-                    }
+                    0 -> tab.text = CURIOSITY.name
+                    1 -> tab.text = OPPORTUNITY.name
+                    2 -> tab.text = SPIRIT.name
                 }
             }.attach()
 
-            filterButton.setOnClickListener {
 
-                FilterWindow().show(
-                    supportFragmentManager,
-                    "Filter Popup Window"
-                )
+            filterButton.setOnClickListener {
+                when (binding.tabs.selectedTabPosition){
+                    0 -> FilterWindow(CURIOSITY.name).show(
+                        supportFragmentManager,
+                        "Filter Popup Window"
+                    )
+                    1 -> FilterWindow(OPPORTUNITY.name).show(
+                        supportFragmentManager,
+                        "Filter Popup Window"
+                    )
+                    2 -> FilterWindow(SPIRIT.name).show(
+                        supportFragmentManager,
+                        "Filter Popup Window"
+                    )
+                }
             }
         }
-
     }
-
 }

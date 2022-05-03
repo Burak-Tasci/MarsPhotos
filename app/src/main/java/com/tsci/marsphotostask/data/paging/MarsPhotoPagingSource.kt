@@ -1,6 +1,5 @@
 package com.tsci.marsphotostask.data.paging
 
-import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.tsci.marsphotostask.data.remote.dto.toMarsPhoto
@@ -34,11 +33,7 @@ internal class MarsPhotoPagingSource @Inject constructor(
 
             val responseData = mutableListOf<MarsPhoto>()
             responseData.addAll(response)
-            Log.d(TAG, "load: $responseData")
 
-            if (responseData == mutableListOf<MarsPhoto>()) {
-                throw Exception("End of page")
-            }
 
             LoadResult.Page(
                 data = responseData,
