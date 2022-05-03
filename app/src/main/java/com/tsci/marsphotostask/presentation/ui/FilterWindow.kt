@@ -9,10 +9,13 @@ import androidx.core.view.children
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import com.tsci.marsphotostask.R
+import com.tsci.marsphotostask.common.Constants
+import com.tsci.marsphotostask.common.Constants.Rovers.CURIOSITY
 import com.tsci.marsphotostask.databinding.FilterLayoutBinding
 import com.tsci.marsphotostask.presentation.BaseViewModel
 
 private const val TAG = "FilterWindow.kt"
+
 class FilterWindow(private val roverName: String) :
     DialogFragment(R.layout.filter_layout) {
 
@@ -20,14 +23,19 @@ class FilterWindow(private val roverName: String) :
     private val viewModel: BaseViewModel by activityViewModels()
 
     private var _binding: FilterLayoutBinding? = null
+
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
 
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View{
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         dialog!!.window?.setBackgroundDrawableResource(R.drawable.round_corner)
         _binding = FilterLayoutBinding.inflate(inflater, container, false)
+        setVisibilities()
         return binding.root
     }
 
@@ -47,39 +55,41 @@ class FilterWindow(private val roverName: String) :
     }
 
     private fun initializeCheckboxes() {
-
-        val cameras = viewModel.cameras[roverName]!!
-        binding.run {
-            for (index in 0 until checkboxes.childCount){
-                val child: View = checkboxes.getChildAt(index)
-                if (child is CheckBox){
-                    if (cameras.contains(child.text)) {
-                        child.isChecked = true
-                        child.visibility = View.VISIBLE
-                    }
-                    else {
-                        child.isChecked = false
-                    }
-                }
+        val cameras = viewModel.cameras.get(roverName)?.value
+        for (child in binding.checkboxes.children) {
+            if (child is CheckBox && child.visibility == View.VISIBLE) {
+                if (cameras!!.contains(child.text.toString())) child.isChecked = true
+                else child.isChecked = false
             }
         }
     }
 
-    private fun filterButtonClicked(){
-        val filters :MutableList<String> = mutableListOf()
+    private fun filterButtonClicked() {
 
-        binding.run {
-            for (child in checkboxes.children){
-                if (child is CheckBox && child.visibility == View.VISIBLE){
-                    if (child.isChecked )
-                        filters.add(child.text.toString())
-                    else
-                        viewModel.cameras[roverName]!!.remove(child.text)
-
-
-                }
+        val filters = mutableListOf<String>()
+        for (child in binding.checkboxes.children) {
+            if (child is CheckBox && child.visibility == View.VISIBLE) {
+                if (child.isChecked) filters.add(child.text.toString())
             }
         }
-        viewModel.filters.value = filters
+        viewModel.cameras.get(roverName)?.value = filters
+    }
+
+
+    private fun setVisibilities() {
+
+        val cameras = when(roverName){
+            CURIOSITY.name -> resources.getStringArray(R.array.curiosity_cameras)
+            else -> resources.getStringArray(R.array.opportunity_and_spirit_cameras)
+        }
+        for (child in binding.checkboxes.children) {
+            if (child is CheckBox) {
+                if (cameras.contains(child.text))
+                    child.visibility = View.VISIBLE
+                else
+                    child.visibility = View.GONE
+            }
+        }
     }
 }
+

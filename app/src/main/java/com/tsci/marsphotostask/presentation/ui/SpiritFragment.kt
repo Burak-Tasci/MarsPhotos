@@ -12,7 +12,7 @@ internal class SpiritFragment: BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.filters.observe(viewLifecycleOwner) {
+        viewModel.cameras.get(SPIRIT.name)?.observe(viewLifecycleOwner) {
             lifecycleScope.launch {
                 viewModel.getPhotos(
                     roverName = SPIRIT.name,

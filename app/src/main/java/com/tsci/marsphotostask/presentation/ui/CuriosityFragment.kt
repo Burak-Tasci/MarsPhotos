@@ -6,12 +6,12 @@ import androidx.lifecycle.lifecycleScope
 import com.tsci.marsphotostask.common.Constants.Rovers.CURIOSITY
 import kotlinx.coroutines.launch
 
+private const val TAG = "CuriosityFragment.kt"
 internal class CuriosityFragment: BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        viewModel.filters.observe(viewLifecycleOwner) {
+        viewModel.cameras.get(CURIOSITY.name)?.observe(viewLifecycleOwner) {
             lifecycleScope.launch {
                 viewModel.getPhotos(
                     roverName = CURIOSITY.name,

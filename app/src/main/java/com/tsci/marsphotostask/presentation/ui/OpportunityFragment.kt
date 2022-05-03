@@ -12,7 +12,7 @@ internal class OpportunityFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        viewModel.filters.observe(viewLifecycleOwner) {
+        viewModel.cameras.get(OPPORTUNITY.name)?.observe(viewLifecycleOwner) {
             lifecycleScope.launch {
                 viewModel.getPhotos(
                     roverName = OPPORTUNITY.name,

@@ -1,5 +1,6 @@
 package com.tsci.marsphotostask.presentation
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -26,16 +27,21 @@ class BaseViewModel @Inject constructor(
         listOf("FHAZ", "RHAZ", "MAST", "CHEMCAM", "MAHLI", "MARDI", "NAVCAM", "PANCAM", "MINITES")
     )
 
-    internal val cameras: Map<String, MutableList<String>> = mapOf(
-        Constants.Rovers.CURIOSITY.name to mutableListOf(
-            "FHAZ", "RHAZ", "MAST", "CHEMCAM", "MAHLI", "MARDI", "NAVCAM"
+    internal val cameras: MutableMap<String, MutableLiveData<List<String>>> = mutableMapOf(
+        Constants.Rovers.CURIOSITY.name to MutableLiveData<List<String>>(
+            listOf(
+                "FHAZ", "RHAZ", "MAST", "CHEMCAM", "MAHLI", "MARDI", "NAVCAM"
+            )
         ),
-        Constants.Rovers.OPPORTUNITY.name to mutableListOf(
-            "FHAZ", "RHAZ", "NAVCAM", "PANCAM", "MINITES"
-
+        Constants.Rovers.OPPORTUNITY.name to MutableLiveData<List<String>>(
+            listOf(
+                "FHAZ", "RHAZ", "NAVCAM", "PANCAM", "MINITES"
+            )
         ),
-        Constants.Rovers.SPIRIT.name to mutableListOf(
-            "FHAZ", "RHAZ", "NAVCAM", "PANCAM", "MINITES"
+        Constants.Rovers.SPIRIT.name to MutableLiveData<List<String>>(
+            listOf(
+                "FHAZ", "RHAZ", "NAVCAM", "PANCAM", "MINITES"
+            )
         )
     )
 
