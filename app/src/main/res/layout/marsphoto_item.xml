@@ -24,6 +24,7 @@
                 app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CustomDialogStyle"
                 tools:srcCompat="@drawable/ic_launcher_background"
                 android:layout_width="match_parent"
+                android:minHeight="150dp"
                 bindShapeableImage="@{item.imgSrc}"
                 android:layout_height="wrap_content"
                 android:scaleType="fitXY" />
