@@ -17,10 +17,10 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-private const val TAG = "BaseViewModel.kt"
+private const val TAG = "MainViewModel.kt"
 
 @HiltViewModel
-class BaseViewModel @Inject constructor(
+class MainViewModel @Inject constructor(
     private val repository: MarsPhotoRepository
 ) : ViewModel() {
 

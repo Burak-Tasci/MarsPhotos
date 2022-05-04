@@ -11,7 +11,7 @@ import androidx.fragment.app.activityViewModels
 import com.tsci.marsphotostask.R
 import com.tsci.marsphotostask.common.Constants.Rovers.CURIOSITY
 import com.tsci.marsphotostask.databinding.FilterLayoutBinding
-import com.tsci.marsphotostask.presentation.BaseViewModel
+import com.tsci.marsphotostask.presentation.MainViewModel
 
 private const val TAG = "FilterWindow.kt"
 
@@ -19,7 +19,7 @@ class FilterWindow(private val roverName: String) :
     DialogFragment(R.layout.filter_layout) {
 
 
-    private val viewModel: BaseViewModel by activityViewModels()
+    private val viewModel: MainViewModel by activityViewModels()
 
     private var _binding: FilterLayoutBinding? = null
 

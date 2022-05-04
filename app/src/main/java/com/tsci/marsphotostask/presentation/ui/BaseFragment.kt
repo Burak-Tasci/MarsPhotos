@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.tsci.marsphotostask.R
 import com.tsci.marsphotostask.databinding.FragmentMainBinding
-import com.tsci.marsphotostask.presentation.BaseViewModel
+import com.tsci.marsphotostask.presentation.MainViewModel
 import com.tsci.marsphotostask.presentation.adapters.MarsPhotoPagedAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -22,7 +22,7 @@ private const val TAG = "BaseFragment.kt"
 @AndroidEntryPoint
 open class BaseFragment : Fragment() {
 
-    protected val viewModel: BaseViewModel by activityViewModels()
+    protected val viewModel: MainViewModel by activityViewModels()
     protected val mAdapter: MarsPhotoPagedAdapter = MarsPhotoPagedAdapter()
 
     private var _binding: FragmentMainBinding? = null
