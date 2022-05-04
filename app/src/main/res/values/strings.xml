@@ -27,4 +27,6 @@
     <!-- CONTENT DESCRIPTIONS !-->
     <string name="listitem_contentdescription">Photograph from Mars</string>
     <string name="filterbutton_contentdescription">Filter Button</string>
+    <!-- FILTER WINDOW TAG !-->
+    <string name="filter_window_tag">FILTER POPUP WINDOW</string>
 </resources>
