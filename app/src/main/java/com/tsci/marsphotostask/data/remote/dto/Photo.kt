@@ -11,7 +11,7 @@ data class Photo(
     val sol: Int
 )
 
-internal fun Photo.toMarsPhoto(): MarsPhoto {
+fun Photo.toMarsPhoto(): MarsPhoto {
     return MarsPhoto(
         id = id,
         cameraName = camera.name,
