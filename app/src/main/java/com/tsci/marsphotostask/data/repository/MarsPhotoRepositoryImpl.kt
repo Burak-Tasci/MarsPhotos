@@ -6,7 +6,7 @@ import com.tsci.marsphotostask.data.remote.dto.Photo
 import com.tsci.marsphotostask.domain.repository.MarsPhotoRepository
 import javax.inject.Inject
 
-internal class MarsPhotoRepositoryImpl @Inject constructor(
+class MarsPhotoRepositoryImpl @Inject constructor(
     private val api: MarsPhotoApi
 ) : MarsPhotoRepository {
     override suspend fun getRoverMarsPhotos(
@@ -37,7 +37,6 @@ internal class MarsPhotoRepositoryImpl @Inject constructor(
                     ).photos
                 )
             }
-
         }
         return MarsPhotosDto(photos)
     }

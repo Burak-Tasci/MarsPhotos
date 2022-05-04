@@ -1,5 +1,6 @@
 package com.tsci.marsphotostask.presentation
 
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -8,6 +9,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.tsci.marsphotostask.common.Constants
+import com.tsci.marsphotostask.common.Constants.Rovers.*
 import com.tsci.marsphotostask.data.paging.MarsPhotoPagingSource
 import com.tsci.marsphotostask.domain.model.MarsPhoto
 import com.tsci.marsphotostask.domain.repository.MarsPhotoRepository
@@ -22,25 +24,26 @@ class BaseViewModel @Inject constructor(
     private val repository: MarsPhotoRepository
 ) : ViewModel() {
 
-    internal val cameras: MutableMap<String, MutableLiveData<List<String>>> = mutableMapOf(
-        Constants.Rovers.CURIOSITY.name to MutableLiveData<List<String>>(
+
+    val cameras: MutableMap<String, MutableLiveData<List<String>>> = mutableMapOf(
+        CURIOSITY.name to MutableLiveData<List<String>>(
             listOf(
                 "FHAZ", "RHAZ", "MAST", "CHEMCAM", "MAHLI", "MARDI", "NAVCAM"
             )
         ),
-        Constants.Rovers.OPPORTUNITY.name to MutableLiveData<List<String>>(
+        OPPORTUNITY.name to MutableLiveData<List<String>>(
             listOf(
                 "FHAZ", "RHAZ", "NAVCAM", "PANCAM", "MINITES"
             )
         ),
-        Constants.Rovers.SPIRIT.name to MutableLiveData<List<String>>(
+        SPIRIT.name to MutableLiveData<List<String>>(
             listOf(
                 "FHAZ", "RHAZ", "NAVCAM", "PANCAM", "MINITES"
             )
         )
     )
 
-    internal fun getPhotos(roverName: String, filters: List<String>): Flow<PagingData<MarsPhoto>> {
+    fun getPhotos(rover: Constants.Rovers): Flow<PagingData<MarsPhoto>> {
         return Pager(
             PagingConfig(
                 pageSize = 1,
@@ -48,7 +51,7 @@ class BaseViewModel @Inject constructor(
                 prefetchDistance = 1
             )
         ) {
-            MarsPhotoPagingSource(repository, rover = roverName, filters = filters)
+            MarsPhotoPagingSource(repository, rover = rover, filters = cameras[rover.name]?.value ?: emptyList())
         }.flow.cachedIn(viewModelScope)
     }
 }

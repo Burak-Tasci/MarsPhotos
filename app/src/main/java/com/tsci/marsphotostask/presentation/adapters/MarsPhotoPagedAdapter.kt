@@ -11,10 +11,10 @@ import com.tsci.marsphotostask.domain.model.MarsPhoto
 
 private const val TAG = "MarsPhotoPagedAdapter.kt"
 
-internal class MarsPhotoPagedAdapter :
+class MarsPhotoPagedAdapter :
     PagingDataAdapter<MarsPhoto, MarsPhotoPagedAdapter.MarsPhotoViewHolder>(diffCallback) {
 
-    internal inner class MarsPhotoViewHolder(val binding: MarsphotoListitemBinding) :
+    inner class MarsPhotoViewHolder(val binding: MarsphotoListitemBinding) :
         RecyclerView.ViewHolder(binding.root)
 
     companion object {
