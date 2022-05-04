@@ -23,7 +23,7 @@ private const val TAG = "BaseFragment.kt"
 open class BaseFragment : Fragment() {
 
     protected val viewModel: BaseViewModel by activityViewModels()
-    internal val mAdapter: MarsPhotoPagedAdapter = MarsPhotoPagedAdapter()
+    protected val mAdapter: MarsPhotoPagedAdapter = MarsPhotoPagedAdapter()
 
     private var _binding: FragmentMainBinding? = null
 
@@ -47,14 +47,14 @@ open class BaseFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupRecyclerView()
+    }
+
+
+    private fun setupRecyclerView(){
         binding.recyclerView.apply {
             adapter = mAdapter
             setHasFixedSize(true)
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }
