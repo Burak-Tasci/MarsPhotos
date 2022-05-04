@@ -7,17 +7,21 @@ import com.tsci.marsphotostask.common.Constants.Rovers.SPIRIT
 import kotlinx.coroutines.launch
 
 private const val TAG = "SpiritFragment.kt"
-internal class SpiritFragment: BaseFragment() {
+
+class SpiritFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setPhotos()
+    }
+
+    private fun setPhotos() {
         viewModel.cameras[SPIRIT.name]?.observe(viewLifecycleOwner) {
             lifecycleScope.launch {
                 viewModel.getPhotos(
-                    roverName = SPIRIT.name,
-                    filters = it ?: emptyList()
-                ).collect{
+                    rover = SPIRIT
+                ).collect {
                     mAdapter.submitData(pagingData = it)
                 }
             }
