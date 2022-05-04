@@ -1,5 +1,5 @@
-# Facts On Numbers
-Facts On Numbers app represents fun facts about numbers and dates according to either by user or randomized inputs.
+# Mars Photos Task
+Appcent sample project.
 ## Libraries
 - Material Library
 - Coroutines
