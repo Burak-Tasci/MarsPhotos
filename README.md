@@ -1,5 +1,5 @@
-# Mars Photos Task
-Appcent sample project.
+# Mars Photos
+NASA App Case Study
 ## Libraries
 - Material Library
 - Coroutines
